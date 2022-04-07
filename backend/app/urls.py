@@ -1,3 +1,5 @@
 from garpixcms.urls import *  # noqa
+from django.urls import path
+from . import views
 
-urlpatterns = [] + urlpatterns  # noqa
+urlpatterns = [path('blank/', views.blank)] + urlpatterns  # noqa
