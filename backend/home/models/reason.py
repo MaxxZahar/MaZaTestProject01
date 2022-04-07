@@ -6,6 +6,9 @@ class Reason(models.Model):
     number = models.IntegerField(verbose_name='Номер')
     description = models.TextField(verbose_name='Описание')
 
+    def __str__(self):
+        return f'{self.number}.{self.title}'
+
     class Meta:
         verbose_name = 'Причина'
         verbose_name_plural = 'Причины'

@@ -5,3 +5,4 @@ from ..models import Recommendation
 @admin.register(Recommendation)
 class RecommendationAdmin(admin.ModelAdmin):
     list_display = ('title', 'reason')
+
