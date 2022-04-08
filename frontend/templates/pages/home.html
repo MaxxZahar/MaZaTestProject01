@@ -5,4 +5,33 @@
 {% include 'include/breadcrumb.html' %}
 
 <h1>{{ object.title }}</h1>
+
+<section class="features">
+    <h2 class="visually-hidden">Блок преимуществ</h2>
+    <div class="features-title">
+          <p>Седона &hairsp;&ndash;&hairsp; небольшой городок в Аризоне, заслуживающий большего!</p>
+          <p>Рассмотрим 5 причин, по которым Седона круче, чем Гранд Каньон!</p>
+    </div>
+    <ul class="features-list">
+        {% for reason in reasons %}
+            <li class="feature-item-{{reason.id}}">
+                <div class="feature-item feature-{{reason.css_class}}">
+                    <h3>{{reason.title}}</h3>
+                    <p>&ndash;&emsp13;№{{reason.number}}&emsp13;&ndash;</p>
+                    <p>{{reason.description}}</p>
+                </div>
+                {% if reason.reason_recommendation %}
+                <ul class="recommendations-list">
+                    {% for recommendation in reason.reason_recommendation %}
+                    <li class="recommendation-item">
+                        <h4>{{recommendation.title}}</h4>
+                        <p>{{recommendation.text}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}
