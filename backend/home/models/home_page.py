@@ -8,7 +8,15 @@ class HomePage(BasePage):
     def get_context(self, request=None, *args, **kwargs):
         from .reason import Reason
         from ..serializers import ReasonSerializer
+        from ..forms import SearchForm
         context = super().get_context(request, *args, **kwargs)
+        if request.method == 'POST':
+            form = SearchForm(request.POST)
+            if form.is_valid():
+                form.save()
+            context.update({
+                'form': form
+            })
         reasons = ReasonSerializer(Reason.objects.all(), many=True).data
         context.update({
             'reasons': reasons
