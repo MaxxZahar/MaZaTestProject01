@@ -14,6 +14,7 @@ class Hotel(models.Model):
     stars = models.IntegerField(verbose_name='Звёзды')
     rating = models.FloatField(verbose_name='Рейтинг')
     img = models.ImageField(blank=True, null=True, verbose_name='Фотография')
+    alt = models.CharField(max_length=255, blank=True, null=True, verbose_name='Текст к фотографии')
     features = models.ManyToManyField(Feature, related_name='hotel_features', verbose_name='Инфраструктура')
 
     class Meta:

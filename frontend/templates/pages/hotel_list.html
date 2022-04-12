@@ -26,16 +26,16 @@
             {% for hotel in hotels %}
                 <li class="results-item">
                     <a class="hotel-photo" href="#">
-                        <img src="{{hotel.img}}" width="135" height="90" alt="Гостиница у подножия красных скал во время заката">
+                        <img src="{{hotel.img}}" width="135" height="90" alt="{{hotel.alt}}">
                     </a>
                     <div class="results-description">
-                        <h3><a class="hotel-name" href="blank.html">{{hotel.name}}</a></h3>
+                        <h3><a class="hotel-name" href="../blank/">{{hotel.name}}</a></h3>
                         <div class="hotel-characteristics">
                             <p>{{hotel.type}}</p>
                             <p>От {{hotel.price}}р.</p>
                         </div>
                         <div class="results-buttons">
-                            <a class="button button-info" href="blank.html">Подробнее</a>
+                            <a class="button button-info" href="../blank/">Подробнее</a>
                             <button class="button button-reserv" type="button" name="reserv">Забронировать</button>
                         </div>
                     </div>
