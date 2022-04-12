@@ -4,15 +4,55 @@
 
 {% include 'include/breadcrumb.html' %}
 
-<h1>{{ object.title }}</h1>
-
-{% for obj in paginated_object_list %}
-    <div>
-        <p><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></p>
-    </div>
-{% empty %}
-    <div>Записей пока нет.</div>
-{% endfor %}
+<main class="hotels-main width-container">
+    <h1 class="visually-hidden">Выбор гостиницы в Седоне</h1>
+    <section class="search-results">
+        <h2 class="visually-hidden">Результаты поиска</h2>
+        <div class="results-sort">
+          <div class="results-sum">
+            <p>Найдено:</p>
+            <div class="results-sum-value">3</div>
+          </div>
+          <div class="sort-controls">
+            <h3>Сортировка:</h3>
+            <div class="sort-parameters">
+              <button onclick="filters(this)" data-parametr-name="ordering" data-parametr-value="price" class="button sort-parameters-button current" type="button">По цене</button>
+              <button onclick="filters(this)" data-parametr-name="ordering" data-parametr-value="type" class="button sort-parameters-button" type="button">По типу</button>
+              <button onclick="filters(this)" data-parametr-name="ordering" data-parametr-value="rating" class="button sort-parameters-button" type="button">По рейтингу</button>
+            </div>
+          </div>
+        </div>
+        <ul class="results-list">
+            {% for hotel in hotels %}
+                <li class="results-item">
+                    <a class="hotel-photo" href="#">
+                        <img src="{{hotel.img}}" width="135" height="90" alt="Гостиница у подножия красных скал во время заката">
+                    </a>
+                    <div class="results-description">
+                        <h3><a class="hotel-name" href="blank.html">{{hotel.name}}</a></h3>
+                        <div class="hotel-characteristics">
+                            <p>{{hotel.type}}</p>
+                            <p>От {{hotel.price}}р.</p>
+                        </div>
+                        <div class="results-buttons">
+                            <a class="button button-info" href="blank.html">Подробнее</a>
+                            <button class="button button-reserv" type="button" name="reserv">Забронировать</button>
+                        </div>
+                    </div>
+                    <div class="results-rating">
+                        <span class="visually-hidden">У отеля {{hotel.stars}} звезды</span>
+                        <ul class="rating-list">
+                            {% for i in hotel.range %}
+                                <li></li>
+                            {% endfor %}
+                        </ul>
+                        <p class="rating-value">Рейтинг: 8,5</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
 
 {% include 'include/pagination.html' %}
 

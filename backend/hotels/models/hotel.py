@@ -10,9 +10,10 @@ class Hotel(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name='Название')
     type = models.CharField(max_length=25, choices=HOTEL_TYPES, verbose_name='Тип жилья')
-    price = models.FloatField(verbose_name='Цена')
+    price = models.IntegerField(verbose_name='Цена')
     stars = models.IntegerField(verbose_name='Звёзды')
     rating = models.FloatField(verbose_name='Рейтинг')
+    img = models.ImageField(blank=True, null=True, verbose_name='Фотография')
     features = models.ManyToManyField(Feature, related_name='hotel_features', verbose_name='Инфраструктура')
 
     class Meta:
