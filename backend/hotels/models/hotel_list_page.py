@@ -15,8 +15,12 @@ class HotelListPage(BaseListPage):
             'hotels': hotels
         })
         for hotel in context['hotels']:
-            hotel.update({'range': range(hotel['stars'])})
+            hotel.update({'range': list(range(hotel['stars']))})
         return context
+
+    def get_serializer(self):
+        from ..serializers import HotelListPageSerializer
+        return HotelListPageSerializer
 
     class Meta:
         verbose_name = "Список отелей"
