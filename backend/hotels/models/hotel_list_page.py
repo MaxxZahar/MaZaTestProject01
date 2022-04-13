@@ -18,10 +18,6 @@ class HotelListPage(BaseListPage):
             hotel.update({'range': list(range(hotel['stars']))})
         return context
 
-    def get_serializer(self):
-        from ..serializers import HotelListPageSerializer
-        return HotelListPageSerializer
-
     class Meta:
         verbose_name = "Список отелей"
         verbose_name_plural = "Списки отелей"
