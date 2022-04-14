@@ -13,6 +13,9 @@ class BookFormModel(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.RESTRICT, related_name='book_hotel', verbose_name='Отель')
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Время бронирования')
 
+    def __str__(self):
+        return f'Бронирование отеля {self.hotel}'
+
     class Meta:
         verbose_name = 'Модель для формы бронирования'
         verbose_name_plural = 'Модели для формы бронирования'
