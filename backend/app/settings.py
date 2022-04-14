@@ -18,3 +18,13 @@ MENU_TYPES = {
 }
 
 CHOICE_MENU_TYPES = [(k, v['title']) for k, v in MENU_TYPES.items()]
+
+BOOKING_EVENT = 1
+
+NOTIFY_EVENTS = {
+    BOOKING_EVENT: {
+        'title': 'Бронирование',
+    },
+}
+
+CHOICES_NOTIFY_EVENT = [(k, v['title']) for k, v in NOTIFY_EVENTS.items()]
