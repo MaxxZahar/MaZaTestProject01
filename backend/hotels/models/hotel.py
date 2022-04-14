@@ -17,6 +17,9 @@ class Hotel(models.Model):
     alt = models.CharField(max_length=255, blank=True, null=True, verbose_name='Текст к фотографии')
     features = models.ManyToManyField(Feature, related_name='hotel_features', verbose_name='Инфраструктура')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Отель'
         verbose_name_plural = 'Отели'
