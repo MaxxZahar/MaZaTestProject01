@@ -14,12 +14,8 @@ class HotelListPage(BaseListPage):
         par = request.GET.get('ordering', False)
         ordering_set = {'price', 'type', 'rating'}
         ordering_set_reverse = {'-' + item for item in ordering_set}
-        if par:
-            print(par)
-            if par[1:] in ordering_set and par[0] == '+':
-                queryset = queryset.order_by(par[1:])
-            elif par in ordering_set_reverse:
-                queryset = queryset.order_by(par)
+        if par in ordering_set.union(ordering_set_reverse):
+            queryset = queryset.order_by(par)
         hotels = HotelSerializer(queryset, many=True).data
         context.update({
             'hotels': hotels

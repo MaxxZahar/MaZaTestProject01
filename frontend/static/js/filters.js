@@ -4,19 +4,16 @@ const filters = (e) => {
     let parametrName = e.getAttribute('data-parametr-name');
     let parametrValue = e.getAttribute('data-parametr-value');
 
-    console.log(parametrName)
-    console.log(parametrValue)
-
     if (currentUrl.searchParams.has(parametrName) && parametrValue == localStorage.getItem(parametrName)) {
 
-        if (currentUrl.searchParams.get(parametrName)[0] == "+" ) {
+        if (currentUrl.searchParams.get(parametrName)[0] !== "-" ) {
             currentUrl.searchParams.set(parametrName, "-" + parametrValue);
         } else {
-            currentUrl.searchParams.set(parametrName, "+" + parametrValue);            
+            currentUrl.searchParams.set(parametrName, parametrValue);
         }
 
     } else {
-        currentUrl.searchParams.set(parametrName, "+" + parametrValue);
+        currentUrl.searchParams.set(parametrName, parametrValue);
     }    
 
     location.assign(currentUrl.href);
