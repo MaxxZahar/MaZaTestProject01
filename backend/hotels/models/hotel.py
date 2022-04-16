@@ -1,13 +1,9 @@
 from django.db import models
 from .feature import Feature
+from ..settings import HOTEL_TYPES
 
 
 class Hotel(models.Model):
-    HOTEL_TYPES = (
-        ('Гостиница', 'Гостиница'),
-        ('Мотель', 'Мотель'),
-        ('Апартаменты', 'Апартаменты')
-    )
     name = models.CharField(max_length=255, verbose_name='Название')
     type = models.CharField(max_length=25, choices=HOTEL_TYPES, verbose_name='Тип жилья')
     price = models.IntegerField(verbose_name='Цена')

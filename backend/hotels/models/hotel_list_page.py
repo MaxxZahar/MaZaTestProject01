@@ -8,7 +8,9 @@ class HotelListPage(BaseListPage):
 
     def get_context(self, request=None, *args, **kwargs):
         from .hotel import Hotel
-        from ..serializers import HotelSerializer
+        from .feature import Feature
+        from ..serializers import HotelSerializer, FeatureSerializer
+        from ..settings import HOTEL_TYPES, NUMBER_OF_FEATURES_AT_TOP_FILTER
         context = super().get_context(request, *args, **kwargs)
         queryset = Hotel.objects.all()
         par = request.GET.get('ordering', False)
@@ -17,8 +19,11 @@ class HotelListPage(BaseListPage):
         if par in ordering_set.union(ordering_set_reverse):
             queryset = queryset.order_by(par)
         hotels = HotelSerializer(queryset, many=True).data
+        features = FeatureSerializer(Feature.objects.all()[:NUMBER_OF_FEATURES_AT_TOP_FILTER], many=True).data
         context.update({
-            'hotels': hotels
+            'hotels': hotels,
+            'features': features,
+            'hotel_types': HOTEL_TYPES,
         })
         for hotel in context['hotels']:
             hotel.update({'range': list(range(hotel['stars']))})

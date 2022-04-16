@@ -1,0 +1,41 @@
+<section class="parameters-form">
+    <h2 class="visually-hidden">Фильтр параметров поиска</h2>
+    <form class="filter" method="get" action="#">
+      <fieldset class="filter-item">
+        <legend>Инфраструктура:</legend>
+          <ul>
+            {% for feature in features %}
+              <li class="filter-checkbox">
+                <input class="visually-hidden filter-input-checkbox filter-input" type="checkbox" name="{{feature.html_form_name}}" id="filter-{{feature.html_form_name}}" checked>
+                <label for="filter-{{feature.html_form_name}}">{{feature.type}}</label>
+              </li>
+            {% endfor %}
+          </ul>
+      </fieldset>
+      <fieldset class="filter-item">
+        <legend>Тип жилья:</legend>
+          <ul>
+            {% for element in hotel_types %}
+              <li class="filter-checkbox">
+                <input class="visually-hidden filter-input-checkbox filter-input" type="checkbox" name="{{element.1}}" id="filter-{{element.1}}" checked>
+                <label for="filter-{{element.1}}">{{element.0}}</label>
+              </li>
+            {% endfor %}
+          </ul>
+      </fieldset>
+      <fieldset class="filter-item">
+        <legend>Стоимость в сутки (р):</legend>
+          <div class="range-filter">
+            <div class="price-controls">
+              <label class="min-price" aria-label="введите минимальное значение">
+                 <input type="text" name="min-price" placeholder="от 0">
+              </label>
+              <label class="max-price" aria-label="введите максимальное значение">
+                 <input type="text" name="max-price" placeholder="до 3000">
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="button filter-button">Показать</button>
+      </fieldset>
+    </form>
+</section>
