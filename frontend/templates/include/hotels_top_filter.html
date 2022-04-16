@@ -1,12 +1,12 @@
 <section class="parameters-form">
     <h2 class="visually-hidden">Фильтр параметров поиска</h2>
-    <form class="filter" method="get" action="#">
+    <form class="filter" method="get" action="">
       <fieldset class="filter-item">
         <legend>Инфраструктура:</legend>
           <ul>
             {% for feature in features %}
               <li class="filter-checkbox">
-                <input class="visually-hidden filter-input-checkbox filter-input" type="checkbox" name="{{feature.html_form_name}}" id="filter-{{feature.html_form_name}}" checked>
+                <input class="visually-hidden filter-input-checkbox filter-input" type="checkbox" name="{{feature.html_form_name}}" id="filter-{{feature.html_form_name}}">
                 <label for="filter-{{feature.html_form_name}}">{{feature.type}}</label>
               </li>
             {% endfor %}
@@ -17,7 +17,7 @@
           <ul>
             {% for element in hotel_types %}
               <li class="filter-checkbox">
-                <input class="visually-hidden filter-input-checkbox filter-input" type="checkbox" name="{{element.1}}" id="filter-{{element.1}}" checked>
+                <input class="visually-hidden filter-input-checkbox filter-input" type="checkbox" name="{{element.1}}" id="filter-{{element.1}}">
                 <label for="filter-{{element.1}}">{{element.0}}</label>
               </li>
             {% endfor %}

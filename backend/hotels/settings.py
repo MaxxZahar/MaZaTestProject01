@@ -4,4 +4,4 @@ HOTEL_TYPES = (
         ('Апартаменты', 'apartments')
     )
 
-NUMBER_OF_FEATURES_AT_TOP_FILTER = 3
+NUMBER_OF_FEATURES_AT_TOP_FILTER = 4

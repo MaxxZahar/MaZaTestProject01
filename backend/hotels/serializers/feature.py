@@ -5,4 +5,4 @@ from ..models import Feature
 class FeatureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feature
-        fields = ('type', 'html_form_name')
+        fields = ('type', 'html_form_name', 'id')
