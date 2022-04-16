@@ -8,8 +8,8 @@ class BookFormModel(models.Model):
     email = models.EmailField(verbose_name='Адрес электронной почты')
     arrival_date = models.DateField(verbose_name='День прибытия')
     departure_date = models.DateField(verbose_name='День отъезда')
-    number_of_adults = models.IntegerField(verbose_name='Число взрослых')
-    number_of_children = models.IntegerField(verbose_name='Число детей')
+    number_of_adults = models.PositiveIntegerField(verbose_name='Число взрослых')
+    number_of_children = models.PositiveIntegerField(verbose_name='Число детей')
     hotel = models.ForeignKey(Hotel, on_delete=models.RESTRICT, related_name='book_hotel', verbose_name='Отель')
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Время бронирования')
 
