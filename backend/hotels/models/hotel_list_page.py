@@ -11,6 +11,7 @@ class HotelListPage(BaseListPage):
         from .feature import Feature
         from ..serializers import HotelSerializer, FeatureSerializer
         from ..settings import HOTEL_TYPES, NUMBER_OF_FEATURES_AT_TOP_FILTER
+
         context = super().get_context(request, *args, **kwargs)
         features = FeatureSerializer(Feature.objects.all()[:NUMBER_OF_FEATURES_AT_TOP_FILTER], many=True).data
         queryset = Hotel.objects.all()
@@ -31,15 +32,57 @@ class HotelListPage(BaseListPage):
         ordering_set_reverse = {'-' + item for item in ordering_set}
         if par in ordering_set.union(ordering_set_reverse):
             queryset = queryset.order_by(par)
+
+        total = len(queryset)
+        pages = []
+        i = 0
+        j = 0
+        data = []
+        page = {}
+        number = 1
+        for item in queryset:
+            data.append(item)
+            i += 1
+            j += 1
+            if i == self.paginate_by:
+                i = 0
+                page['data'] = data
+                page['number'] = number
+                number += 1
+                pages.append(page)
+                page = {}
+                data = []
+            elif j == total:
+                page['data'] = data
+                page['number'] = number
+                pages.append(page)
+        page_number = 1
+
+        if request.GET.get('page', False):
+            try:
+                page_number = int(request.GET.get('page'))
+                if page_number > len(pages) or page_number < 1:
+                    raise ValueError
+            except ValueError:
+                print('Wrong request')
+            queryset = pages[page_number - 1]['data']
+        else:
+            queryset = pages[0]['data']
+
+        page_range = list(range(1, len(pages) + 1))
+
         hotels = HotelSerializer(queryset, many=True).data
 
         context.update({
             'hotels': hotels,
             'features': features,
             'hotel_types': HOTEL_TYPES,
+            'page': page_number,
+            'page_range': page_range,
         })
         for hotel in context['hotels']:
             hotel.update({'range': list(range(hotel['stars']))})
+
         return context
 
     class Meta:

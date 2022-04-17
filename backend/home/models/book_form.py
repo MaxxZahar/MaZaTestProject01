@@ -1,6 +1,7 @@
 from django.db import models
 from hotels.models import Hotel
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 
 class BookFormModel(models.Model):
