@@ -3,6 +3,7 @@ from garpix_page.models import BasePage
 
 
 class HomePage(BasePage):
+    text = models.TextField(default='Главная страница', verbose_name='Текст на главной')
     template = "pages/home.html"
 
     def get_context(self, request=None, *args, **kwargs):
