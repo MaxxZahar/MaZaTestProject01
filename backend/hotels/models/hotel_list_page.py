@@ -3,7 +3,7 @@ from garpix_page.models import BaseListPage
 
 
 class HotelListPage(BaseListPage):
-    paginate_by = 2
+    paginate_by = 5
     template = 'pages/hotel_list.html'
 
     def get_context(self, request=None, *args, **kwargs):
@@ -74,6 +74,7 @@ class HotelListPage(BaseListPage):
         hotels = HotelSerializer(queryset, many=True).data
 
         context.update({
+            'total': total,
             'hotels': hotels,
             'features': features,
             'hotel_types': HOTEL_TYPES,
